@@ -34,11 +34,18 @@ async function sendRequest(otp: number) {
   }
 }
 
-// tring to send without baching
-for(let i=0;i<=999999;i++){
-    console.log(i);
-    sendRequest(i.toString());
+//sending req in batches
+//batching the request
+async function main() {
+  for (let i = 0; i < 1000000; i+=100) {
+    const promises = [];
+    console.log("here for " + i);
+    for (let j = 0; j < 100; j++) {
+      promises.push(sendRequest(i + j))
+    }
+    //wait for all the promises to resolve 
+    await Promise.all(promises);
+  }
 }
 
-
-// main()
+main()
