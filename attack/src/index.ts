@@ -62,7 +62,7 @@ let config = {
 try{
     await axios.request(config)
 }catch(e){
-// console.log(e);
+console.log(e);
 }
 }
 
